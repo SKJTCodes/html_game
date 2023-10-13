@@ -7,7 +7,7 @@ export class Player {
         this.y = this.game.height - this.height;
     }
     update(){
-        this.x++;
+        // this.x++;
     }
     draw(context){
         context.fillRect(this.x, this.y, this.width, this.height);
