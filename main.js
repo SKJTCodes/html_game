@@ -1,42 +1,42 @@
-import { shadow_dog_coords } from "./assets/shadow_dog/shadow_dog.js";
+import { Sprite } from "./sprite.js";
 
-let playerState = 'idle';
-const dropdown = document.getElementById('animations');
-dropdown.addEventListener('change', function(e){
-    playerState = e.target.value;
-})
+// let playerState = 'idle';
+// const dropdown = document.getElementById('animations');
+// dropdown.addEventListener('change', function(e){
+//     playerState = e.target.value;
+// })
 
 const canvas = document.getElementById('canvas1');
 const ctx = canvas.getContext('2d');
-const CANVAS_WIDTH = canvas.width = 600;
-const CANVAS_HEIGHT = canvas.height = 600;
+const CANVAS_WIDTH = canvas.width = 700;
+const CANVAS_HEIGHT = canvas.height = 700;
 
-const playerImage = new Image();
-//sprite sheet width = 6876px
-// sprite sheet height = 5230px
-playerImage.src = './assets/shadow_dog/shadow_dog.png';
-const spriteWidth = 575;
-const spriteHeight = 523;
+const frames = new Map([
+    ['idle-1', [[0, 0, 575, 523], [286, 523]]], 
+    ['idle-2', [[575, 0, 575, 523], [286, 523]]], 
+    ['idle-3', [[1150, 0, 575, 523], [286, 523]]], 
+    ['idle-4', [[1725, 0, 575, 523], [286, 523]]], 
+    ['idle-5', [[2300, 0, 575, 523], [286, 523]]], 
+    ['idle-6', [[2875, 0, 575, 523], [286, 523]]], 
+    ['idle-7', [[3450, 0, 575, 523], [286, 523]]]
+]);
 
-let frameX = 0;
-let gameFrame = 0;
-const staggerFrames = 5;
+const player = new Sprite({
+    position: {x: 350, y: 350},
+    imageSrc: "./assets/shadow_dog/shadow_dog.png",
+    frames: frames
+})
+
+let prevTime = 0;
+let secPassed = 0;
 
 function animate(){
-    const sprite_coords = shadow_dog_coords[playerState][frameX];
-    ctx.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
-    ctx.drawImage(playerImage, 
-        sprite_coords['x'], sprite_coords['y'], sprite_coords['width'], sprite_coords['height'], 
-        0, 0, spriteWidth, spriteHeight
-    );
-   
-    // every 5th gameFrame, will load 1 sprite from sheet
-    if(gameFrame % staggerFrames == 0){
-        if(frameX < shadow_dog_coords[playerState].length - 1) frameX++;
-        else frameX = 0;
-    }
-    gameFrame++;
+    // init
     requestAnimationFrame(animate);
+    ctx.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
+
+    // Items to Loop through
+    player.update(ctx);
 }
 
 animate();
