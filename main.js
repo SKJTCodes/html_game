@@ -1,36 +1,28 @@
-import { Player } from './player.js'
-import { InputHandler } from './input.js';
+const canvas = document.getElementById('canvas1');
+const ctx = canvas.getContext('2d');
+const CANVAS_WIDTH = canvas.width = 600;
+const CANVAS_HEIGHT = canvas.height = 600;
 
-window.addEventListener('load', function(){
-    const canvas = document.getElementById('canvas1');
-    const ctx = canvas.getContext('2d');
-    canvas.width = 500;
-    canvas.height = 500;
+const playerImage = new Image();
+//sprite sheet width = 6876px
+// sprite sheet height = 5230px
+playerImage.src = './assets/shadow_dog.png';
+const spriteWidth = 575;
+const spriteHeight = 523;
+let frameX = 0;
+let frameY = 8;
+let gameFrame = 0;
 
-    class Game {
-        constructor(width, height){
-            this.width = width;
-            this.height = height;
-            this.player = new Player(this);
-            this.input = new InputHandler();
-        }
-        update(){
-            this.player.update(this.input.keys);
-        }
-        draw(context){
-            this.player.draw(context);
-        }
-    }
+function animate(){
+    ctx.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
+    ctx.drawImage(playerImage, 
+        frameX * spriteWidth, frameY * spriteHeight, spriteWidth, spriteHeight, 
+        0, 0, spriteWidth, spriteHeight
+    );
+    
+    if(frameX < 12) frameX++;
+    else frameX = 0;
+    requestAnimationFrame(animate);
+}
 
-    const game = new Game(canvas.width, canvas.height);
-    console.log(game);
-
-    function animate(){
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-        game.update();
-        game.draw(ctx);
-        requestAnimationFrame(animate);
-    }
-
-    animate();
-})
+animate();
