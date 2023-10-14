@@ -1,4 +1,4 @@
-import { shadow_dog_coords } from "./assets/shadow_dog.js";
+import { shadow_dog_coords } from "./assets/shadow_dog/shadow_dog.js";
 
 let playerState = 'idle';
 const dropdown = document.getElementById('animations');
@@ -14,7 +14,7 @@ const CANVAS_HEIGHT = canvas.height = 600;
 const playerImage = new Image();
 //sprite sheet width = 6876px
 // sprite sheet height = 5230px
-playerImage.src = './assets/shadow_dog.png';
+playerImage.src = './assets/shadow_dog/shadow_dog.png';
 const spriteWidth = 575;
 const spriteHeight = 523;
 
