@@ -22,7 +22,7 @@ export class Player {
         if(this.x > this.game.width - this.width) this.x = this.game.width - this.width;
 
         // vertical movement
-        if(input.includes('ArrowUp') && this.onGround()) this.vy -= 10; // will activate only once when arrow up is pressed
+        if(input.includes('ArrowUp') && this.onGround()) this.vy -= 20; // will activate only once when arrow up is pressed
         this.y += this.vy; // will make player move up by vy
          // during in air, value of vy decreases but y still moving up just at a slower pace.
          // once vy hits 0 at max jump height, it will become positive value so player will start to drop
