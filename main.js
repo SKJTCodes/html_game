@@ -88,7 +88,6 @@ function checkOrigin() {
     })
 }
 
-
 function animate() {
     // init
     requestAnimationFrame(animate);
@@ -107,6 +106,13 @@ function animate() {
         else if (sprite.state == 'walkLeft') sprite.state = 'idleLeft';
         else if (sprite.state == 'walkRight') sprite.state = 'idleRight';
     }
+    // character movement
+    console.log(sprite.position.x);
+    if(input.keys.includes('ArrowUp') && !input.keys.includes('ArrowDown') && sprite.position.y >= 0) sprite.position.y--;
+    else if(input.keys.includes('ArrowDown') && !input.keys.includes('ArrowUp') && sprite.position.y + sprite.height <= canvas.height) sprite.position.y++;
+    if(input.keys.includes('ArrowLeft') && !input.keys.includes('ArrowRight') && sprite.position.x - 15 >= 0) sprite.position.x--;
+    else if(input.keys.includes('ArrowRight') && !input.keys.includes('ArrowLeft') && sprite.position.x + 15 <= canvas.width) sprite.position.x++;
+
     sprite.update(ctx);
     // checkOrigin();
 }

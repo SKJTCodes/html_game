@@ -9,11 +9,15 @@ export class Sprite {
         this.staggerFrame = 10;
         this.frame = 0;
         this.state = "idleDown";
+        this.width = 0;
+        this.height = 0;
     }
     draw(context) {
         // console.log(this.animateIndex);
         // console.log(this.animations[this.state][this.animateIndex]);
         const [[x, y, width, height], [originX, originY]] = this.coords[this.animations[this.state][this.animateIndex]];
+        this.height = height;
+        
         context.drawImage(
             this.spriteSheet,
             x, y, width, height,
