@@ -6,7 +6,7 @@ export class Sprite {
         this.coords = coords;
         this.animations = animations;
         this.animateIndex = 0;
-        this.staggerFrame = 10;
+        this.staggerFrame = 7;
         this.frame = 0;
         this.state = "idleDown";
         this.width = 0;

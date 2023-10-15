@@ -76,6 +76,7 @@ const sprite = new Sprite({
 });
 
 const input = new InputHandler();
+const VELOCITY = 2;
 
 function checkOrigin() {
     const xPos = 60;
@@ -108,10 +109,10 @@ function animate() {
     }
     // character movement
     console.log(sprite.position.x);
-    if(input.keys.includes('ArrowUp') && !input.keys.includes('ArrowDown') && sprite.position.y >= 0) sprite.position.y--;
-    else if(input.keys.includes('ArrowDown') && !input.keys.includes('ArrowUp') && sprite.position.y + sprite.height <= canvas.height) sprite.position.y++;
-    if(input.keys.includes('ArrowLeft') && !input.keys.includes('ArrowRight') && sprite.position.x - 15 >= 0) sprite.position.x--;
-    else if(input.keys.includes('ArrowRight') && !input.keys.includes('ArrowLeft') && sprite.position.x + 15 <= canvas.width) sprite.position.x++;
+    if(input.keys.includes('ArrowUp') && !input.keys.includes('ArrowDown') && sprite.position.y >= 0) sprite.position.y -= VELOCITY;
+    else if(input.keys.includes('ArrowDown') && !input.keys.includes('ArrowUp') && sprite.position.y + sprite.height <= canvas.height) sprite.position.y += VELOCITY;
+    if(input.keys.includes('ArrowLeft') && !input.keys.includes('ArrowRight') && sprite.position.x - 15 >= 0) sprite.position.x -= VELOCITY;
+    else if(input.keys.includes('ArrowRight') && !input.keys.includes('ArrowLeft') && sprite.position.x + 15 <= canvas.width) sprite.position.x += VELOCITY;
 
     sprite.update(ctx);
     // checkOrigin();
