@@ -96,10 +96,17 @@ function animate() {
 
     // object updates
     // Female Character Logic
-    if(input.keys.includes('ArrowUp') && !input.keys.includes('ArrowDown')) sprite.state = 'idleUp';
-    else if(input.keys.includes('ArrowDown') && !input.keys.includes('ArrowUp')) sprite.state = 'idleDown';
-    else if (input.keys.includes('ArrowLeft') && !input.keys.includes('ArrowRight')) sprite.state = 'idleLeft';
-    else if (input.keys.includes('ArrowRight') && !input.keys.includes('ArrowLeft')) sprite.state = 'idleRight';
+    if (input.keys.includes('ArrowUp') && !input.keys.includes('ArrowDown')) sprite.state = 'walkUp';
+    else if (input.keys.includes('ArrowDown') && !input.keys.includes('ArrowUp')) sprite.state = 'walkDown';
+    else if (input.keys.includes('ArrowLeft') && !input.keys.includes('ArrowRight')) sprite.state = 'walkLeft';
+    else if (input.keys.includes('ArrowRight') && !input.keys.includes('ArrowLeft')) sprite.state = 'walkRight';
+    else { // when no keys are pressed but previous direction walked is used to define idle position
+        sprite.animateIndex = 0;
+        if (sprite.state == "walkUp") sprite.state = "idleUp";
+        else if (sprite.state == 'walkDown') sprite.state = "idleDown";
+        else if (sprite.state == 'walkLeft') sprite.state = 'idleLeft';
+        else if (sprite.state == 'walkRight') sprite.state = 'idleRight';
+    }
     sprite.update(ctx);
     // checkOrigin();
 }
