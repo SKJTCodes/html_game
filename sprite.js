@@ -8,7 +8,7 @@ export class Sprite {
         this.animateIndex = 0;
         this.staggerFrame = 7;
         this.frame = 0;
-        this.state = "idleDown";
+        this.state = "idleUp";
         this.width = 0;
         this.height = 0;
     }

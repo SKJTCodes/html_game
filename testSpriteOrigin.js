@@ -37,6 +37,15 @@ const coords = {
    'walk-right-5': [[386, 719, 54, 49], [27, 0]],
    'walk-right-6': [[457, 719, 51, 49], [20, 0]],
    'walk-right-7': [[524, 719, 48, 49], [17, 0]],
+   // attack up
+   'attack-up-0': [[4, 272, 54, 48], [28, 30]],
+   'attack-up-1': [[68, 273, 51, 47], [28, 30]],
+   'attack-up-2': [[139, 272, 40, 48], [21, 30]],
+   'attack-up-3': [[211, 266, 27, 54], [12, 36]],
+   'attack-up-4': [[275, 261, 28, 59], [13, 41]],
+   'attack-up-5': [[334, 256, 35, 63], [18, 46]],
+   'attack-up-6': [[403, 261, 28, 59], [13, 41]],
+   'attack-up-7': [[467, 266, 27, 54], [12, 36]],
    // idle
    'idle-up': [[7, 527, 51, 49], [23, 0]],
    'idle-left': [[3, 591, 51, 49], [28, 0]],
@@ -48,6 +57,7 @@ const animations = {
     'walkLeft': ['walk-left-0', 'walk-left-1', 'walk-left-2', 'walk-left-3', 'walk-left-4', 'walk-left-5', 'walk-left-6', 'walk-left-7'],
     'walkDown': ['walk-down-0', 'walk-down-1', 'walk-down-2', 'walk-down-3', 'walk-down-4', 'walk-down-5', 'walk-down-6', 'walk-down-7'],
     'walkRight': ['walk-right-0', 'walk-right-1', 'walk-right-2', 'walk-right-3', 'walk-right-4', 'walk-right-5', 'walk-right-6', 'walk-right-7'],
+    'attackUp': ['attack-up-0', 'attack-up-1', 'attack-up-2','attack-up-3', 'attack-up-4', 'attack-up-5','attack-up-6', 'attack-up-7'],
     'idleUp': ['idle-up'],
     'idleLeft': ['idle-left'],
     'idleRight': ['idle-right'],
