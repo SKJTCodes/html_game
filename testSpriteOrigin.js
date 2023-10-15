@@ -38,10 +38,10 @@ const coords = {
    'walk-right-6': [[457, 719, 51, 49], [20, 0]],
    'walk-right-7': [[524, 719, 48, 49], [17, 0]],
    // idle
-   'idle-up':[[7, 527, 51, 49], [20, 0]],
-   'idle-left':[[3, 591, 51, 49], [24, 0]],
-   'idle-down':[[0, 655, 51, 49], [26, 0]],
-   'idle-right':[[10, 719, 51, 49], [19, 0]],
+   'idle-up': [[7, 527, 51, 49], [23, 0]],
+   'idle-left': [[3, 591, 51, 49], [28, 0]],
+   'idle-down': [[0, 655, 51, 49], [28, 0]],
+   'idle-right': [[10, 719, 51, 49], [19, 0]],
 };
 const animations = {
     'walkUp': ['walk-up-0', 'walk-up-1', 'walk-up-2', 'walk-up-3', 'walk-up-4', 'walk-up-5', 'walk-up-6', 'walk-up-7'],

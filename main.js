@@ -57,9 +57,9 @@ const sprite = new Sprite({
         'walk-right-6': [[457, 719, 51, 49], [20, 0]],
         'walk-right-7': [[524, 719, 48, 49], [17, 0]],
         // idle
-        'idle-up': [[7, 527, 51, 49], [20, 0]],
-        'idle-left': [[3, 591, 51, 49], [24, 0]],
-        'idle-down': [[0, 655, 51, 49], [26, 0]],
+        'idle-up': [[7, 527, 51, 49], [23, 0]],
+        'idle-left': [[3, 591, 51, 49], [28, 0]],
+        'idle-down': [[0, 655, 51, 49], [28, 0]],
         'idle-right': [[10, 719, 51, 49], [19, 0]],
     },
     animations: {
@@ -78,11 +78,7 @@ function checkOrigin() {
     const xPos = 60;
     const padding = 20;
     sprites.forEach((s, i) => {
-        // if (i == 0) s.state = "idleUp";
-        // if (i == 1) s.state = "idleDown";
-        // if (i == 2) s.state = "idleLeft";
-        // if (i == 3) s.state = "idleRight";
-        s.state = 'walkUp';
+        s.state = 'walkRight';
         s.position.x = padding + (i * xPos);
         s.animateIndex = i;
         s.draw(ctx);
@@ -96,7 +92,7 @@ function animate() {
     ctx.fillRect(0, 0, canvas.width, canvas.height);
 
     // object updates
-    sprite.state = 'walkUp';
+    sprite.state = 'idleRight';
     sprite.update(ctx);
     checkOrigin();
 }
