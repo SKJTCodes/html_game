@@ -1,6 +1,7 @@
 import { Player } from "./player.js";
 import { Sprite } from "./sprite.js";
 import { sprites } from "./testSpriteOrigin.js";
+import { InputHandler } from "./input.js";
 
 // init
 const canvas = document.querySelector('canvas');
@@ -72,7 +73,9 @@ const sprite = new Sprite({
         'idleRight': ['idle-right'],
         'idleDown': ['idle-down']
     }
-})
+});
+
+const input = new InputHandler();
 
 function checkOrigin() {
     const xPos = 60;
@@ -92,9 +95,13 @@ function animate() {
     ctx.fillRect(0, 0, canvas.width, canvas.height);
 
     // object updates
-    sprite.state = 'idleRight';
+    // Female Character Logic
+    if(input.keys.includes('ArrowUp') && !input.keys.includes('ArrowDown')) sprite.state = 'idleUp';
+    else if(input.keys.includes('ArrowDown') && !input.keys.includes('ArrowUp')) sprite.state = 'idleDown';
+    else if (input.keys.includes('ArrowLeft') && !input.keys.includes('ArrowRight')) sprite.state = 'idleLeft';
+    else if (input.keys.includes('ArrowRight') && !input.keys.includes('ArrowLeft')) sprite.state = 'idleRight';
     sprite.update(ctx);
-    checkOrigin();
+    // checkOrigin();
 }
 
 animate();

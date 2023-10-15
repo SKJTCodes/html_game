@@ -1,5 +1,5 @@
 export class Sprite {
-    constructor({position, imageSrc, coords, animations}){
+    constructor({ position, imageSrc, coords, animations }) {
         this.spriteSheet = new Image();
         this.spriteSheet.src = imageSrc;
         this.position = position;
@@ -8,9 +8,9 @@ export class Sprite {
         this.animateIndex = 0;
         this.staggerFrame = 10;
         this.frame = 0;
-        this.state = "walkRight";
+        this.state = "idleDown";
     }
-    draw(context){
+    draw(context) {
         // console.log(this.animateIndex);
         // console.log(this.animations[this.state][this.animateIndex]);
         const [[x, y, width, height], [originX, originY]] = this.coords[this.animations[this.state][this.animateIndex]];
@@ -21,19 +21,19 @@ export class Sprite {
         );
         this.drawDebug(context);
     }
-    update(context){
+    update(context) {
         this.frame++;
-        if(this.frame % this.staggerFrame == 0) {
+        if (this.frame % this.staggerFrame == 0) {
             this.animateIndex++;
-            if(this.animateIndex >= this.animations[this.state].length){
+            if (this.animateIndex >= this.animations[this.state].length) {
                 this.animateIndex = 0;
-            } 
+            }
             // console.log(this.animateIndex);
         }
 
         this.draw(context);
     }
-    drawDebug(context){
+    drawDebug(context) {
         context.lineWidth = 1;
         context.beginPath();
         context.strokeStyle = 'white';
