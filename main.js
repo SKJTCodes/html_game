@@ -22,14 +22,14 @@ const sprite = new Sprite({
     imageSrc: "./assets/Characters/female.png",
     coords: {
         // walk up
-        'walk-up-0': [[71, 527, 51, 49], [23, 0]],
-        'walk-up-1': [[135, 527, 51, 49], [23, 0]],
-        'walk-up-2': [[198, 528, 51, 48], [24, 0]],
-        'walk-up-3': [[263, 527, 51, 49], [23, 0]],
-        'walk-up-4': [[327, 527, 51, 49], [23, 0]],
-        'walk-up-5': [[391, 527, 51, 49], [23, 0]],
-        'walk-up-6': [[455, 528, 51, 48], [23, 0]],
-        'walk-up-7': [[519, 527, 51, 49], [23, 0]],
+        'walk-up-0': [[71, 527, 51, 49], [25, 30]],
+        'walk-up-1': [[135, 527, 51, 49], [25, 30]],
+        'walk-up-2': [[198, 528, 51, 48], [26, 30]],
+        'walk-up-3': [[263, 527, 51, 49], [25, 30]],
+        'walk-up-4': [[327, 527, 51, 49], [25, 30]],
+        'walk-up-5': [[391, 527, 51, 49], [25, 30]],
+        'walk-up-6': [[455, 528, 51, 48], [25, 30]],
+        'walk-up-7': [[519, 527, 51, 49], [25, 30]],
         // walk left
         'walk-left-0': [[64, 592, 48, 48], [31, 0]],
         'walk-left-1': [[129, 591, 51, 49], [30, 0]],
@@ -67,10 +67,10 @@ const sprite = new Sprite({
         'attack-up-6': [[403, 261, 28, 59], [13, 41]],
         'attack-up-7': [[467, 266, 27, 54], [12, 36]],
         // idle
-        'idle-up': [[7, 527, 51, 49], [23, 0]],
-        'idle-left': [[3, 591, 51, 49], [28, 0]],
-        'idle-down': [[0, 655, 51, 49], [28, 0]],
-        'idle-right': [[10, 719, 51, 49], [19, 0]],
+        'idle-up': [[7, 527, 51, 49], [25, 29]],
+        'idle-left': [[3, 591, 51, 49], [28, 29]],
+        'idle-down': [[0, 655, 51, 49], [32, 30]],
+        'idle-right': [[10, 719, 51, 49], [22, 30]],
     },
     animations: {
         'walkUp': ['walk-up-0', 'walk-up-1', 'walk-up-2', 'walk-up-3', 'walk-up-4', 'walk-up-5', 'walk-up-6', 'walk-up-7'],
@@ -92,7 +92,7 @@ function checkOrigin() {
     const xPos = 60;
     const padding = 20;
     sprites.forEach((s, i) => {
-        s.state = 'attackUp';
+        s.state = 'walkUp';
         s.position.x = padding + (i * xPos);
         s.animateIndex = i;
         s.draw(ctx);
@@ -123,7 +123,7 @@ function animate() {
     // else if (input.keys.includes('ArrowDown') && !input.keys.includes('ArrowUp') && sprite.position.y + sprite.height <= canvas.height) sprite.position.y += VELOCITY;
     // if (input.keys.includes('ArrowLeft') && !input.keys.includes('ArrowRight') && sprite.position.x - 15 >= 0) sprite.position.x -= VELOCITY;
     // else if (input.keys.includes('ArrowRight') && !input.keys.includes('ArrowLeft') && sprite.position.x + 15 <= canvas.width) sprite.position.x += VELOCITY;
-    sprite.state = 'attackUp';
+    sprite.state = 'walkUp';
     sprite.update(ctx);
     checkOrigin();
 }
