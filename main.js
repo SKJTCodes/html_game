@@ -1,54 +1,68 @@
+import { Player } from "./player.js";
 import { Sprite } from "./sprite.js";
-import { coords } from "./assets/leona/leona.coords.js";
+import { sprites } from "./testSpriteOrigin.js";
 
-// let playerState = 'idle';
-// const dropdown = document.getElementById('animations');
-// dropdown.addEventListener('change', function(e){
-//     playerState = e.target.value;
-// })
+// init
+const canvas = document.querySelector('canvas');
+const ctx = canvas.getContext('2d');
+canvas.width = 600;
+canvas.height = 250;
 
-let frame = 10;
-const state = 'fj';
-const animations = {
-    'idle': ['idle-1', 'idle-2', 'idle-3', 'idle-4', 'idle-5', 'idle-6', 'idle-7', 'idle-8'],
-    'fj': ['forward-jump-1', 'forward-jump-2', 'forward-jump-3', 'forward-jump-4', 'forward-jump-5', 'forward-jump-6', 'forward-jump-7', 'forward-jump-8', 'forward-jump-9', 'forward-jump-10', 'forward-jump-11']
+// declare objects
+const player = new Player({
+    position: { x: 0, y: 0 }
+});
+
+// 832 x 1344
+// rows x cols : 21 x 13
+// frame w x h : 40 x 103
+const sprite = new Sprite({
+    position: { x: 250, y: 150 },
+    imageSrc: "./assets/Characters/female.png",
+    coords: {
+        'walk-right-0': [[80, 720, 48, 48], [13, 0]],
+        'walk-right-1': [[140, 719, 51, 49], [17, 0]],
+        'walk-right-2': [[195, 719, 54, 49], [26, 0]],
+        'walk-right-3': [[262, 719, 53, 49], [23, 0]],
+        'walk-right-4': [[324, 720, 53, 48], [25, 0]],
+        'walk-right-5': [[386, 719, 54, 49], [27, 0]],
+        'walk-right-6': [[457, 719, 51, 49], [20, 0]],
+        'walk-right-7': [[524, 719, 48, 49], [17, 0]]
+    },
+    animations: {
+        'walkRight': ['walk-right-0', 'walk-right-1', 'walk-right-2', 'walk-right-3', 'walk-right-4', 'walk-right-5', 'walk-right-6', 'walk-right-7']
+    }
+})
+
+function checkOrigin() {
+    const xPos = 60;
+    const padding = 20;
+    sprites.forEach((s, i) => {
+        s.position.x = padding + (i * xPos);
+        s.animateIndex = i;
+        s.draw(ctx);
+    })
 }
 
-document.getElementById('prev').addEventListener('click', function(e){
-    if(frame < 1) frame = animations[state].length - 1;
-    else frame--; 
-})
-document.getElementById('next').addEventListener('click', function(e){
-    if(frame >= animations[state].length - 1) frame = 0;
-    else frame++;
-})
 
-const canvas = document.getElementById('canvas1');
-const ctx = canvas.getContext('2d');
-const CANVAS_WIDTH = canvas.width = 400;
-const CANVAS_HEIGHT = canvas.height = 400;
-
-const player = new Sprite({
-    position: {x: 200, y: 200},
-    imageSrc: "./assets/leona/Leona-trans.png",
-    frames: coords,
-    animations: animations,
-    state: state
-})
-
-let prevTime = 0;
-let secPassed = 0;
-
-function animate(){
+function animate() {
     // init
     requestAnimationFrame(animate);
-    ctx.fillStyle = 'purple';
-    ctx.fillRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    // object updates
+    checkOrigin();
 
-    frame++;
 
-    // Items to Loop through
-    player.update(ctx, frame);
+    // sprite.animateIndex = 0;
+    // sprite.draw(ctx);
+    // sprite.animateIndex = 1;
+    // sprite.position.x = 200;
+    // sprite.draw(ctx);
+    // sprite.animateIndex = 2;
+    // sprite.position.x = 300;
+    // sprite.draw(ctx);
+
+    sprite.update(ctx);
 }
 
 animate();

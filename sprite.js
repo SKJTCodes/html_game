@@ -1,29 +1,34 @@
 export class Sprite {
-    constructor({position, imageSrc, frames, curFrame = 1, animations, state = 'idle'}){
+    constructor({position, imageSrc, coords, animations}){
         this.spriteSheet = new Image();
         this.spriteSheet.src = imageSrc;
         this.position = position;
-        this.frames = frames;
-        this.curFrame = curFrame;
+        this.coords = coords;
         this.animations = animations;
-        this.state = state;
+        this.animateIndex = 0;
+        this.staggerFrame = 10;
+        this.frame = 0;
+        this.state = "walkRight";
     }
-
     draw(context){
-        const [[x, y, width, height], [originX, originY]] = this.frames.get(this.animations[this.state][this.curFrame]);
-        // this is basically simulating an origin in a different area. in actual fact, the origin is still top left
-        // but through using the magic of methethics, we can simulate that the center is the new origin.
-        const nx = this.position.x - originX
-        const ny = this.position.y - originY
-        context.drawImage(this.spriteSheet,
-            // Position of cropping (x, y, width, height)
+        const [[x, y, width, height], [originX, originY]] = this.coords[this.animations[this.state][this.animateIndex]];
+        context.drawImage(
+            this.spriteSheet,
             x, y, width, height,
-            // Position to display on canvas (x, y, width * scale, height * scale)
-            nx, ny, width, height
+            this.position.x - originX, this.position.y - originY, width, height
         );
         this.drawDebug(context);
     }
+    update(context){
+        this.frame++;
+        if(this.frame % this.staggerFrame == 0) {
+            this.animateIndex++;
+            if(this.animateIndex >= this.animations[this.state].length) this.animateIndex = 0;
+            console.log(this.animateIndex);
+        }
 
+        this.draw(context);
+    }
     drawDebug(context){
         context.lineWidth = 1;
         context.beginPath();
@@ -33,14 +38,5 @@ export class Sprite {
         context.moveTo(this.position.x, this.position.y - 5);
         context.lineTo(this.position.x, this.position.y + 4);
         context.stroke();
-    }
-
-    update(context, frame){
-        // this.curFrame = frame;
-        this.draw(context);
-        if(frame % 10 == 0){
-            this.curFrame++;
-            if (this.curFrame > 7) this.curFrame = 0;
-        }
     }
 }
