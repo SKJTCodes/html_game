@@ -77,7 +77,7 @@ const sprite = new Sprite({
         'walkLeft': ['walk-left-0', 'walk-left-1', 'walk-left-2', 'walk-left-3', 'walk-left-4', 'walk-left-5', 'walk-left-6', 'walk-left-7'],
         'walkDown': ['walk-down-0', 'walk-down-1', 'walk-down-2', 'walk-down-3', 'walk-down-4', 'walk-down-5', 'walk-down-6', 'walk-down-7'],
         'walkRight': ['walk-right-0', 'walk-right-1', 'walk-right-2', 'walk-right-3', 'walk-right-4', 'walk-right-5', 'walk-right-6', 'walk-right-7'],
-        'attackUp': ['attack-up-0', 'attack-up-1', 'attack-up-2','attack-up-3', 'attack-up-4', 'attack-up-5','attack-up-6', 'attack-up-7'],
+        'attackUp': ['attack-up-0', 'attack-up-1', 'attack-up-2', 'attack-up-3', 'attack-up-4', 'attack-up-5', 'attack-up-6', 'attack-up-7'],
         'idleUp': ['idle-up'],
         'idleLeft': ['idle-left'],
         'idleRight': ['idle-right'],
@@ -106,23 +106,32 @@ function animate() {
 
     // object updates
     // Female Character Logic
-    if (input.keys.includes('ArrowUp') && !input.keys.includes('ArrowDown')) sprite.state = 'walkUp';
-    else if (input.keys.includes('ArrowDown') && !input.keys.includes('ArrowUp')) sprite.state = 'walkDown';
-    else if (input.keys.includes('ArrowLeft') && !input.keys.includes('ArrowRight')) sprite.state = 'walkLeft';
-    else if (input.keys.includes('ArrowRight') && !input.keys.includes('ArrowLeft')) sprite.state = 'walkRight';
-    else { // when no keys are pressed but previous direction walked is used to define idle position
-        sprite.animateIndex = 0;
-        if (sprite.state == "walkUp") sprite.state = "idleUp";
-        else if (sprite.state == 'walkDown') sprite.state = "idleDown";
-        else if (sprite.state == 'walkLeft') sprite.state = 'idleLeft';
-        else if (sprite.state == 'walkRight') sprite.state = 'idleRight';
+    // character attack
+    if (sprite.state == 'attackUp' && sprite.animateIndex == 0) sprite.state = 'idleUp';
+    if (input.keys.includes(' ')) {
+        sprite.state = 'attackUp';
     }
-    // character movement
-    console.log(sprite.position.x);
-    if (input.keys.includes('ArrowUp') && !input.keys.includes('ArrowDown') && sprite.position.y >= 0) sprite.position.y -= VELOCITY;
-    else if (input.keys.includes('ArrowDown') && !input.keys.includes('ArrowUp') && sprite.position.y + sprite.height <= canvas.height) sprite.position.y += VELOCITY;
-    if (input.keys.includes('ArrowLeft') && !input.keys.includes('ArrowRight') && sprite.position.x - 15 >= 0) sprite.position.x -= VELOCITY;
-    else if (input.keys.includes('ArrowRight') && !input.keys.includes('ArrowLeft') && sprite.position.x + 15 <= canvas.width) sprite.position.x += VELOCITY;
+
+    if (sprite.state != 'attackUp') {
+        // walk Logic
+        if (input.keys.includes('ArrowUp') && !input.keys.includes('ArrowDown')) sprite.state = 'walkUp';
+        else if (input.keys.includes('ArrowDown') && !input.keys.includes('ArrowUp')) sprite.state = 'walkDown';
+        else if (input.keys.includes('ArrowLeft') && !input.keys.includes('ArrowRight')) sprite.state = 'walkLeft';
+        else if (input.keys.includes('ArrowRight') && !input.keys.includes('ArrowLeft')) sprite.state = 'walkRight';
+        else { // when no keys are pressed but previous direction walked is used to define idle position
+            sprite.animateIndex = 0;
+            if (sprite.state == "walkUp") sprite.state = "idleUp";
+            else if (sprite.state == 'walkDown') sprite.state = "idleDown";
+            else if (sprite.state == 'walkLeft') sprite.state = 'idleLeft';
+            else if (sprite.state == 'walkRight') sprite.state = 'idleRight';
+        }
+        // character movement
+        if (input.keys.includes('ArrowUp') && !input.keys.includes('ArrowDown') && sprite.position.y >= 0) sprite.position.y -= VELOCITY;
+        else if (input.keys.includes('ArrowDown') && !input.keys.includes('ArrowUp') && sprite.position.y + sprite.height <= canvas.height) sprite.position.y += VELOCITY;
+        if (input.keys.includes('ArrowLeft') && !input.keys.includes('ArrowRight') && sprite.position.x - 15 >= 0) sprite.position.x -= VELOCITY;
+        else if (input.keys.includes('ArrowRight') && !input.keys.includes('ArrowLeft') && sprite.position.x + 15 <= canvas.width) sprite.position.x += VELOCITY;
+    }
+
     // sprite.state = 'idleUp';
     sprite.update(ctx);
     checkOrigin();
