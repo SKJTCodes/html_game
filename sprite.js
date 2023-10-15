@@ -11,6 +11,8 @@ export class Sprite {
         this.state = "walkRight";
     }
     draw(context){
+        // console.log(this.animateIndex);
+        // console.log(this.animations[this.state][this.animateIndex]);
         const [[x, y, width, height], [originX, originY]] = this.coords[this.animations[this.state][this.animateIndex]];
         context.drawImage(
             this.spriteSheet,
@@ -23,8 +25,10 @@ export class Sprite {
         this.frame++;
         if(this.frame % this.staggerFrame == 0) {
             this.animateIndex++;
-            if(this.animateIndex >= this.animations[this.state].length) this.animateIndex = 0;
-            console.log(this.animateIndex);
+            if(this.animateIndex >= this.animations[this.state].length){
+                this.animateIndex = 0;
+            } 
+            // console.log(this.animateIndex);
         }
 
         this.draw(context);
