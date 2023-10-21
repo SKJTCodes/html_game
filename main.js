@@ -37,12 +37,12 @@ function animate() {
     }
 
     sprites.forEach((s, i) => {
-        s.state = 'idleRight';
         s.animateIndex = i;
         s.draw(ctx);
     })
 
-    warrior.update(ctx);
+    warrior.init(ctx);
+    // console.log(warrior.state);
     // femaleCharacter.update(ctx);
 }
 
