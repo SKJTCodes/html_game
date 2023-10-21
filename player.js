@@ -5,8 +5,8 @@ import { Sprite } from "./sprite.js";
 // character.js initializes everything else
 
 export class Player extends Sprite {
-    constructor({ position, imageSrc, coords, animations, idleState, keys }) {
-        super({ position, imageSrc, coords, animations, idleState });
+    constructor({ position, imageSrc, coords, animations, idleState, keys, showOrigin }) {
+        super({ position, imageSrc, coords, animations, idleState, showOrigin });
         this.keys = keys;
         this.velocity = 1;
         this.action_lock = false;
@@ -18,8 +18,8 @@ export class Player extends Sprite {
 
         if (this.keys.includes(' ') || this.action_lock) {
             this.action_lock = this.startAttack();
-        } 
-            
+        }
+
         if (!this.action_lock) {
             // Up-down movement
             if (this.keys.includes('ArrowDown') && !this.keys.includes('ArrowUp')) {

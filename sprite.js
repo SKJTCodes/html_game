@@ -1,5 +1,5 @@
 export class Sprite {
-    constructor({ position, imageSrc, coords, animations, idleState, staggerFrame = 6 }) {
+    constructor({ position, imageSrc, coords, animations, idleState, staggerFrame = 6, showOrigin = true }) {
         this.spriteSheet = new Image();
         this.spriteSheet.src = imageSrc;
         this.position = position;
@@ -12,6 +12,7 @@ export class Sprite {
         this.width = 0;
         this.height = 0;
         this.facing = "Right";
+        this.showOrigin = showOrigin;
         this.prev = { x: position.x, y: position.y, state: this.state };
     }
     startAttack() {
@@ -51,7 +52,7 @@ export class Sprite {
             x, y, width, height,
             this.position.x - originX, this.position.y - originY, width, height
         );
-        this.drawOrigin(context);
+        if (this.showOrigin) this.drawOrigin(context);
     }
     setState() {
         // choose movement state according to change in position
