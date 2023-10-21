@@ -1,5 +1,6 @@
 import { Female } from "./characters/female.js";
-import { sprites } from "./testSpriteOrigin.js";
+import { Warrior } from "./characters/warrior.js";
+import { sprites } from "./characters/identifySprites.js";
 import { InputHandler } from "./input.js";
 
 // init
@@ -9,21 +10,14 @@ canvas.width = 1000;
 canvas.height = 500;
 
 const input = new InputHandler();
-const player = new Female({
+const femaleCharacter = new Female({
     position: { x: 250, y: 150 },
     keys: input.keys
 });
-
-function checkOrigin() {
-    const xPos = 60;
-    const padding = 20;
-    sprites.forEach((s, i) => {
-        s.state = 'attackDown';
-        s.position.x = padding + (i * xPos);
-        s.animateIndex = i;
-        s.draw(ctx);
-    })
-}
+const warrior = new Warrior({
+    position: { x: 250, y: 350 },
+    keys: input.keys
+})
 
 function animate() {
     // init
@@ -31,19 +25,25 @@ function animate() {
     ctx.fillRect(0, 0, canvas.width, canvas.height);
 
     // keep character within borders
-    if (player.position.x <= 0) {
-        player.position.x = 0;
-    } else if (player.position.x >= canvas.width) {
-        player.position.x = canvas.width;
+    if (femaleCharacter.position.x <= 0) {
+        femaleCharacter.position.x = 0;
+    } else if (femaleCharacter.position.x >= canvas.width) {
+        femaleCharacter.position.x = canvas.width;
     }
-    if (player.position.y >= canvas.height) {
-        player.position.y = canvas.height;
-    } else if (player.position.y <= 0) {
-        player.position.y = 0;
+    if (femaleCharacter.position.y >= canvas.height) {
+        femaleCharacter.position.y = canvas.height;
+    } else if (femaleCharacter.position.y <= 0) {
+        femaleCharacter.position.y = 0;
     }
 
-    // checkOrigin();
-    player.update(ctx);
+    sprites.forEach((s, i) => {
+        s.state = 'idleRight';
+        s.animateIndex = i;
+        s.draw(ctx);
+    })
+
+    warrior.update(ctx);
+    // femaleCharacter.update(ctx);
 }
 
 animate();

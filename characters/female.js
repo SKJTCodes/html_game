@@ -96,6 +96,14 @@ export class Female extends Player {
             'idleRight': ['idle-right'],
             'idleDown': ['idle-down']
         }
-        super({ position, imageSrc: imageSrc, coords: coords, animations: animations, idleState: 'idleDown', keys, showOrigin: false })
+        super({
+            position,
+            imageSrc: imageSrc,
+            coords: coords,
+            animations: animations,
+            idleState: 'idleDown',
+            keys,
+            showOrigin: false
+        })
     }
 }
