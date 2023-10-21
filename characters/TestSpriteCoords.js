@@ -37,7 +37,7 @@ export const warrior = {
             'idle-right-5', 'idle-right-6', 'idle-right-7', 'idle-right-8', 'idle-right-9',
             'idle-right-10', 'idle-right-11'
         ],
-        'moveRight': [
+        'walkRight': [
             'move-right-0', "move-right-1", 'move-right-2', 'move-right-3', 'move-right-4',
             'move-right-5', 'move-right-6', 'move-right-7'
         ],
