@@ -6,18 +6,19 @@ import { InputHandler } from "./input.js";
 // init
 const canvas = document.querySelector('canvas');
 const ctx = canvas.getContext('2d');
-canvas.width = 600;
-canvas.height = 250;
+canvas.width = 1000;
+canvas.height = 500;
 
 // declare objects
-const player = new Player({
-    position: { x: 0, y: 0 }
-});
+// const player = new Player({
+//     position: { x: 0, y: 0 }
+// });
 
 // 832 x 1344
 // rows x cols : 21 x 13
 // frame w x h : 40 x 103
-const sprite = new Sprite({
+const input = new InputHandler();
+const player = new Player({
     position: { x: 250, y: 150 },
     imageSrc: "./assets/Characters/female.png",
     coords: {
@@ -112,11 +113,10 @@ const sprite = new Sprite({
         'idleLeft': ['idle-left'],
         'idleRight': ['idle-right'],
         'idleDown': ['idle-down']
-    }
+    },
+    keys: input.keys,
+    idleState: 'idleDown'
 });
-
-const input = new InputHandler();
-const VELOCITY = 2;
 
 function checkOrigin() {
     const xPos = 60;
@@ -162,9 +162,10 @@ function animate() {
     //     else if (input.keys.includes('ArrowRight') && !input.keys.includes('ArrowLeft') && sprite.position.x + 15 <= canvas.width) sprite.position.x += VELOCITY;
     // }
 
-    sprite.state = 'attackDown';
-    sprite.update(ctx);
-    checkOrigin();
+    // sprite.state = 'attackDown';
+    // sprite.update(ctx);
+    // checkOrigin();
+    player.init(ctx);
 }
 
 animate();

@@ -1,43 +1,75 @@
 export class Sprite {
-    constructor({ position, imageSrc, coords, animations }) {
+    constructor({ position, imageSrc, coords, animations, idleState, staggerFrame = 6 }) {
         this.spriteSheet = new Image();
         this.spriteSheet.src = imageSrc;
         this.position = position;
         this.coords = coords;
         this.animations = animations;
         this.animateIndex = 0;
-        this.staggerFrame = 10;
+        this.staggerFrame = staggerFrame;
         this.frame = 0;
-        this.state = "idleUp";
+        this.state = idleState;
         this.width = 0;
         this.height = 0;
+        this.facing = "Right";
+        this.prev = { x: position.x, y: position.y, state: this.state };
     }
     draw(context) {
         // console.log(this.animateIndex);
         // console.log(this.animations[this.state][this.animateIndex]);
         const [[x, y, width, height], [originX, originY]] = this.coords[this.animations[this.state][this.animateIndex]];
         this.height = height;
-        
+
         context.drawImage(
             this.spriteSheet,
             x, y, width, height,
             this.position.x - originX, this.position.y - originY, width, height
         );
-        this.drawDebug(context);
+        this.drawOrigin(context);
     }
     update(context) {
+        this.setState();
+
+        // if state change, need to reset frame count
+        if (this.state != this.prev.state) {
+            this.frame = -1;
+        }
+
+        // iterate through animation frames
         this.frame++;
         if (this.frame % this.staggerFrame == 0) {
             this.animateIndex++;
             if (this.animateIndex >= this.animations[this.state].length) {
                 this.animateIndex = 0;
             }
-            // console.log(this.animateIndex);
         }
-
+        // draw sprite on screen
         this.draw(context);
+        this.prev.x = this.position.x;
+        this.prev.y = this.position.y;
+        this.prev.state = this.state;
     }
-    drawDebug(context) {
+    setState() {
+        // choose movement state according to change in position
+        // priority animation is facing right
+
+        if (this.position.y > this.prev.y){
+            this.state = "walkDown";
+            this.facing = "Down";
+        } else if (this.position.y < this.prev.y){
+            this.state = "walkUp";
+            this.facing = "Up";
+        } else if (this.position.x > this.prev.x) {
+            this.state = "walkRight";
+            this.facing = "Right"
+        } else if (this.position.x < this.prev.x) {
+            this.state = "walkLeft";
+            this.facing = "Left"
+        } else { // when both are equal
+            this.state = "idle" + this.facing;
+        }
+    }
+    drawOrigin(context) {
         context.lineWidth = 1;
         context.beginPath();
         context.strokeStyle = 'white';

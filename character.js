@@ -1,6 +1,6 @@
-import { Sprite } from "./sprite.js";
+import { Player } from "./player";
 
-export class Character extends Sprite{
+export class Female extends Player{
     constructor(){
         super()
     }
