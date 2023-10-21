@@ -107,7 +107,7 @@ const player = new Player({
         'walkRight': ['idle-right', 'walk-right-0', 'walk-right-1', 'walk-right-2', 'walk-right-3', 'walk-right-4', 'walk-right-5', 'walk-right-6', 'walk-right-7'],
         'attackUp': ['attack-up-0', 'attack-up-1', 'attack-up-2', 'attack-up-3', 'attack-up-4', 'attack-up-5', 'attack-up-6', 'attack-up-7'],
         'attackLeft': ['attack-left-0', 'attack-left-1', 'attack-left-2', 'attack-left-3', 'attack-left-4', 'attack-left-5', 'attack-left-6', 'attack-left-7'],
-        'attackDown': ['attack-down-0', 'attack-down-1','attack-down-2', 'attack-down-3', 'attack-down-4', 'attack-down-5', 'attack-down-6', 'attack-down-7'],
+        'attackDown': ['attack-down-0', 'attack-down-1', 'attack-down-2', 'attack-down-3', 'attack-down-4', 'attack-down-5', 'attack-down-6', 'attack-down-7'],
         'attackRight': ['attack-right-0', 'attack-right-1', 'attack-right-2', 'attack-right-3', 'attack-right-4', 'attack-right-5', 'attack-right-6', 'attack-right-7'],
         'idleUp': ['idle-up'],
         'idleLeft': ['idle-left'],
@@ -134,38 +134,20 @@ function animate() {
     requestAnimationFrame(animate);
     ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-    // object updates
-    // Female Character Logic
-    // character attack
-    // if (sprite.state == 'attackUp' && sprite.animateIndex == 0) sprite.state = 'idleUp';
-    // if (input.keys.includes(' ')) {
-    //     sprite.state = 'attackUp';
-    // }
+    // keep character within borders
+    if (player.position.x <= 0) {
+        player.position.x = 0;
+    } else if (player.position.x >= canvas.width) {
+        player.position.x = canvas.width;
+    }
+    if (player.position.y >= canvas.height) {
+        player.position.y = canvas.height;
+    } else if (player.position.y <= 0){
+        player.position.y = 0;
+    }
 
-    // if (sprite.state != 'attackUp') {
-    //     // walk Logic
-    //     if (input.keys.includes('ArrowUp') && !input.keys.includes('ArrowDown')) sprite.state = 'walkUp';
-    //     else if (input.keys.includes('ArrowDown') && !input.keys.includes('ArrowUp')) sprite.state = 'walkDown';
-    //     else if (input.keys.includes('ArrowLeft') && !input.keys.includes('ArrowRight')) sprite.state = 'walkLeft';
-    //     else if (input.keys.includes('ArrowRight') && !input.keys.includes('ArrowLeft')) sprite.state = 'walkRight';
-    //     else { // when no keys are pressed but previous direction walked is used to define idle position
-    //         sprite.animateIndex = 0;
-    //         if (sprite.state == "walkUp") sprite.state = "idleUp";
-    //         else if (sprite.state == 'walkDown') sprite.state = "idleDown";
-    //         else if (sprite.state == 'walkLeft') sprite.state = 'idleLeft';
-    //         else if (sprite.state == 'walkRight') sprite.state = 'idleRight';
-    //     }
-    //     // character movement
-    //     if (input.keys.includes('ArrowUp') && !input.keys.includes('ArrowDown') && sprite.position.y >= 0) sprite.position.y -= VELOCITY;
-    //     else if (input.keys.includes('ArrowDown') && !input.keys.includes('ArrowUp') && sprite.position.y + sprite.height <= canvas.height) sprite.position.y += VELOCITY;
-    //     if (input.keys.includes('ArrowLeft') && !input.keys.includes('ArrowRight') && sprite.position.x - 15 >= 0) sprite.position.x -= VELOCITY;
-    //     else if (input.keys.includes('ArrowRight') && !input.keys.includes('ArrowLeft') && sprite.position.x + 15 <= canvas.width) sprite.position.x += VELOCITY;
-    // }
-
-    // sprite.state = 'attackDown';
-    // sprite.update(ctx);
     // checkOrigin();
-    player.init(ctx);
+    player.update(ctx);
 }
 
 animate();

@@ -14,25 +14,18 @@ export class Sprite {
         this.facing = "Right";
         this.prev = { x: position.x, y: position.y, state: this.state };
     }
-    draw(context) {
-        // console.log(this.animateIndex);
-        // console.log(this.animations[this.state][this.animateIndex]);
-        const [[x, y, width, height], [originX, originY]] = this.coords[this.animations[this.state][this.animateIndex]];
-        this.height = height;
-
-        context.drawImage(
-            this.spriteSheet,
-            x, y, width, height,
-            this.position.x - originX, this.position.y - originY, width, height
-        );
-        this.drawOrigin(context);
+    startAttack() {
+        // lock users into the attack animation until it ends.
+        this.state = "attack" + this.facing;
+        if (this.animateIndex + 1 >= this.animations[this.state].length) {
+            return false;
+        }
+        return true;
     }
-    update(context) {
-        this.setState();
-
+    animate(context) {
         // if state change, need to reset frame count
         if (this.state != this.prev.state) {
-            this.frame = -1;
+            this.animateIndex = 0;
         }
 
         // iterate through animation frames
@@ -49,14 +42,24 @@ export class Sprite {
         this.prev.y = this.position.y;
         this.prev.state = this.state;
     }
+    draw(context) {
+        const [[x, y, width, height], [originX, originY]] = this.coords[this.animations[this.state][this.animateIndex]];
+        this.height = height;
+
+        context.drawImage(
+            this.spriteSheet,
+            x, y, width, height,
+            this.position.x - originX, this.position.y - originY, width, height
+        );
+        this.drawOrigin(context);
+    }
     setState() {
         // choose movement state according to change in position
-        // priority animation is facing right
-
-        if (this.position.y > this.prev.y){
+        // priority animation is up and down
+        if (this.position.y > this.prev.y) {
             this.state = "walkDown";
             this.facing = "Down";
-        } else if (this.position.y < this.prev.y){
+        } else if (this.position.y < this.prev.y) {
             this.state = "walkUp";
             this.facing = "Up";
         } else if (this.position.x > this.prev.x) {
