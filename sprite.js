@@ -44,6 +44,8 @@ export class Sprite {
         this.prev.state = this.state;
     }
     draw(context) {
+        console.log(this.animations[this.state][this.animateIndex])
+        console.log(this.coords[this.animations[this.state][this.animateIndex]]);
         const [[x, y, width, height], [originX, originY]] = this.coords[this.animations[this.state][this.animateIndex]];
         this.height = height;
 
