@@ -27,10 +27,10 @@ export const warrior = {
         "dash-right-0": [[1363, 816, 63, 96], [37, 50]],
         'dash-right-1': [[1576, 816, 54, 96], [25, 50]],
         "dash-right-2": [[1768, 816, 54, 96], [25, 50]],
-        "dash-right-3": [[1963, 816, 48, 96], [22, 50]],
-        "dash-right-4": [[2155, 813, 48, 99], [19, 53]],
-        "dash-right-5": [[2347, 810, 51, 102], [19, 56]],
-        "dash-right-6": [[2533, 810, 54, 102], [22, 56]],
+        "dash-right-3": [[1963, 816, 48, 96], [25, 50]],
+        "dash-right-4": [[2155, 813, 48, 99], [22, 53]],
+        "dash-right-5": [[2347, 810, 51, 102], [25, 56]],
+        "dash-right-6": [[2533, 810, 54, 102], [31, 56]],
         /* ARMED WITH SWORD */
         // idle weapon right
         "idle-right-weap-0": [[1372, 234, 66, 102], [35, 50]],
@@ -56,12 +56,24 @@ export const warrior = {
         "move-right-weap-7": [[2716, 618, 69, 102], [35, 56]],
         // attack weapon right
         "attack-right-0": [[1354, 1008, 84, 96], [37, 50]],
-        'attack-right-1': [[1576, 1008, 120, 96], [25, 50]],
-        "attack-right-2": [[1771, 1008, 114, 96], [25, 50]],
-        "attack-right-3": [[1963, 1005, 93, 99], [22, 50]],
-        "attack-right-4": [[2152, 1002, 84, 102], [19, 53]],
-        "attack-right-5": [[2332, 1002, 69, 102], [19, 56]],
-        "attack-right-6": [[2533, 810, 54, 102], [22, 56]],
+        'attack-right-1': [[1576, 1008, 120, 96], [16, 50]],
+        "attack-right-2": [[1771, 1008, 114, 96], [16, 50]],
+        "attack-right-3": [[1963, 1005, 93, 99], [13, 53]],
+        "attack-right-4": [[2152, 1002, 84, 102], [19, 56]],
+        "attack-right-5": [[2332, 1002, 69, 102], [31, 56]],
+        // idle weapon down
+        "idle-down-weap-0": [[1375, 1386, 63, 108], [33, 50]],
+        'idle-down-weap-1': [[1567, 1386, 63, 108], [33, 50]],
+        "idle-down-weap-2": [[1759, 1386, 63, 108], [33, 50]],
+        "idle-down-weap-3": [[1951, 1386, 63, 108], [33, 50]],
+        "idle-down-weap-4": [[2143, 1383, 63, 108], [33, 53]],
+        "idle-down-weap-5": [[2335, 1383, 63, 108], [33, 53]],
+        "idle-down-weap-6": [[2527, 1383, 60, 108], [33, 53]],
+        "idle-down-weap-7": [[2719, 1383, 60, 108], [33, 53]],
+        "idle-down-weap-8": [[2914, 1383, 57, 108], [30, 53]],
+        "idle-down-weap-9": [[3106, 1383, 58, 108], [30, 53]],
+        "idle-down-weap-10": [[3298, 1386, 57, 108], [30, 50]],
+        "idle-down-weap-11": [[3490, 1386, 57, 108], [30, 50]],
         // death
         "death-0": [[1378, 4650, 57, 103], [29, 50]],
         'death-1': [[1570, 4653, 54, 100], [26, 47]],
@@ -88,6 +100,11 @@ export const warrior = {
             'move-right-weap-0', 'move-right-weap-1', "move-right-weap-2", 'move-right-weap-3', 
             "move-right-weap-4", 'move-right-weap-5', "move-right-weap-6", 'move-right-weap-7'
         ],
+        'idleDown': [
+            'idle-down-weap-0', 'idle-down-weap-1', 'idle-down-weap-2', 'idle-down-weap-3',
+            'idle-down-weap-4', 'idle-down-weap-5', 'idle-down-weap-6', 'idle-down-weap-7', 
+            'idle-down-weap-8', 'idle-down-weap-9', 'idle-down-weap-10', 'idle-down-weap-11' 
+        ],
         // 'idleRight': [
         //     'idle-right-0', 'idle-right-1', 'idle-right-2', 'idle-right-3', 'idle-right-4',
         //     'idle-right-5', 'idle-right-6', 'idle-right-7', 'idle-right-8', 'idle-right-9',
@@ -97,6 +114,10 @@ export const warrior = {
         //     'move-right-0', "move-right-1", 'move-right-2', 'move-right-3', 'move-right-4',
         //     'move-right-5', 'move-right-6', 'move-right-7'
         // ],
+        'attackRight': [
+            'attack-right-0', 'attack-right-1', 'attack-right-2', 'attack-right-3', 
+            'attack-right-4', 'attack-right-5'
+        ],
         'dashRight': [
             'dash-right-0', 'dash-right-1', 'dash-right-2', 'dash-right-3', 'dash-right-4', 
             'dash-right-5', 'dash-right-6'
@@ -107,5 +128,5 @@ export const warrior = {
         ],
     },
     'path': "./assets/Characters/warrior.png",
-    'state': 'walkRight'
+    'state': 'idleDown'
 }
