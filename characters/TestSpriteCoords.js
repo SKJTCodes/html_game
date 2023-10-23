@@ -112,6 +112,26 @@ export const warrior = {
         "move-left-weap-5": [[2299, 2922, 96, 102], [66, 53]],
         "move-left-weap-6": [[2488, 2919, 99, 102], [69, 53]],
         "move-left-weap-7": [[2680, 2922, 99, 102], [69, 56]],
+        // attack weapon left
+        "attack-left-0": [[1366, 3312, 87, 96], [54, 50]],
+        'attack-left-1': [[1504, 3312, 126, 96], [108, 50]],
+        "attack-left-2": [[1699, 3312, 120, 96], [99, 50]],
+        "attack-left-3": [[1906, 3309, 102, 99], [84, 53]],
+        "attack-left-4": [[2101, 3306, 99, 102], [78, 56]],
+        "attack-left-5": [[2302, 3306, 93, 102], [69, 56]],
+        // idle weapon up
+        "idle-up-weap-0": [[1378, 3690, 66, 102], [30, 53]],
+        'idle-up-weap-1': [[1570, 3690, 66, 102], [30, 53]],
+        "idle-up-weap-2": [[1762, 3690, 66, 102], [30, 53]],
+        "idle-up-weap-3": [[1954, 3690, 66, 102], [30, 53]],
+        "idle-up-weap-4": [[2146, 3687, 66, 105], [30, 56]],
+        "idle-up-weap-5": [[2338, 3687, 66, 105], [30, 56]],
+        "idle-up-weap-6": [[2533, 3687, 63, 105], [27, 56]],
+        "idle-up-weap-7": [[2725, 3687, 64, 105], [27, 56]],
+        "idle-up-weap-8": [[2917, 3687, 63, 105], [27, 56]],
+        "idle-up-weap-9": [[3109, 3687, 63, 105], [27, 56]],
+        "idle-up-weap-10": [[3301, 3690, 63, 102], [27, 53]],
+        "idle-up-weap-11": [[3493, 3690, 63, 102], [27, 53]],
         // death
         "death-0": [[1378, 4650, 57, 103], [29, 50]],
         'death-1': [[1570, 4653, 54, 100], [26, 47]],
@@ -161,13 +181,20 @@ export const warrior = {
             'idle-left-weap-8', 'idle-left-weap-9', 'idle-left-weap-10', 'idle-left-weap-11'
         ],
         'walkLeft': [
-            // 'move-left-weap-6', 'move-left-weap-7'
             'move-left-weap-0', 'move-left-weap-1', "move-left-weap-2", 'move-left-weap-3', 
             "move-left-weap-4", 'move-left-weap-5', "move-left-weap-6", 'move-left-weap-7'
         ],
         'dashRight': [
             'dash-right-0', 'dash-right-1', 'dash-right-2', 'dash-right-3', 'dash-right-4', 
             'dash-right-5', 'dash-right-6'
+        ],
+        'attackLeft': [
+            'attack-left-0', 'attack-left-1', 'attack-left-3', 'attack-left-4', 'attack-left-5'
+        ],
+        'idleUp': [
+            'idle-up-weap-0', 'idle-up-weap-1', 'idle-up-weap-2', 'idle-up-weap-3',
+            'idle-up-weap-4', 'idle-up-weap-5', 'idle-up-weap-6', 'idle-up-weap-7', 
+            'idle-up-weap-8', 'idle-up-weap-9', 'idle-up-weap-10', 'idle-up-weap-11'
         ],
         // 'idleRight': [
         //     'idle-right-0', 'idle-right-1', 'idle-right-2', 'idle-right-3', 'idle-right-4',
@@ -184,5 +211,5 @@ export const warrior = {
         ],
     },
     'path': "./assets/Characters/warrior.png",
-    'state': 'walkLeft'
+    'state': 'idleUp'
 }

@@ -41,7 +41,7 @@ function animate() {
         s.draw(ctx);
     })
 
-    warrior.update(ctx);
+    warrior.init(ctx);
     // console.log(warrior.state);
     // femaleCharacter.update(ctx);
 }
