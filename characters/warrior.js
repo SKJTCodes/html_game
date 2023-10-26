@@ -1,5 +1,5 @@
 import { Player } from "../player.js";
-// import { warrior } from "./TestSpriteCoords.js";
+// import { player } from "./TestSpriteCoords.js";
 
 export class Warrior extends Player {
 

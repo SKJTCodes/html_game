@@ -1,7 +1,7 @@
 import { Sprite } from "../sprite.js";
-import { warrior } from "./TestSpriteCoords.js";
+import { player } from "./TestSpriteCoords.js";
 
-export const sprites = generateSprites(warrior.state, warrior.anim, warrior.coords, warrior.path);
+export const sprites = generateSprites(player.state, player.anim, player.coords, player.path);
 function generateSprites(state = "idleRight", a, c, img) {
     let sprites = [];
     for (let i = 0; i < a[state].length; i++) {

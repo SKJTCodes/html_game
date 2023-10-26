@@ -5,8 +5,8 @@ import { Sprite } from "./sprite.js";
 // character.js initializes everything else
 
 export class Player extends Sprite {
-    constructor({ position, imageSrc, coords, animations, idleState, keys, showOrigin }) {
-        super({ position, imageSrc, coords, animations, idleState, showOrigin });
+    constructor({ position, imageSrc, coords, animations, idleState, keys, showOrigin, staggerFrame }) {
+        super({ position, imageSrc, coords, animations, idleState, showOrigin, staggerFrame });
         this.keys = keys;
         this.velocity = 1;
         this.action_lock = false;

@@ -1,7 +1,28 @@
 import { Female } from "./characters/female.js";
 import { Warrior } from "./characters/warrior.js";
-import { sprites } from "./characters/identifySprites.js";
+import { sprites } from "./characters/TestSprites.js";
 import { InputHandler } from "./input.js";
+import { Player } from "./player.js";
+import { player } from "./characters/TestSpriteCoords.js"
+
+class TestAnim extends Player {
+    constructor({ position, keys }) {
+        super({
+            position,
+            imageSrc: player.path,
+            coords: player.coords,
+            animations: player.anim,
+            idleState: player.state,
+            keys,
+            showOrigin: true,
+            staggerFrame: 6
+        });
+    }
+    init(context){
+        this.state = player.state;
+        this.update(context);
+    }
+}
 
 // init
 const canvas = document.querySelector('canvas');
@@ -16,6 +37,10 @@ const femaleCharacter = new Female({
 });
 const warrior = new Warrior({
     position: { x: 250, y: 350 },
+    keys: input.keys
+})
+const testAnim = new TestAnim({
+    position: { x: 250, y: 310},
     keys: input.keys
 })
 
@@ -41,7 +66,7 @@ function animate() {
         s.draw(ctx);
     })
 
-    warrior.init(ctx);
+    testAnim.init(ctx);
     // console.log(warrior.state);
     // femaleCharacter.update(ctx);
 }
