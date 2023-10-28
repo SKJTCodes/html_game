@@ -17,6 +17,18 @@ export const player = {
         'idle-left-13': [[2016, 5, 144, 174], [0, 174]],
         'idle-left-14': [[2170, 5, 144, 173], [0, 173]],
         'idle-left-15': [[2324, 5, 144, 176], [0, 176]],
+        // WALK FORWARD LEFT
+        'walk-forward-left-0': [[5, 373, 153, 186], [0, 0]],
+        'walk-forward-left-1': [[168, 373, 178, 196], [0, 0]],
+        'walk-forward-left-2': [[356, 373, 171, 192], [0, 0]],
+        'walk-forward-left-3': [[536, 373, 153, 195], [0, 0]],
+        'walk-forward-left-4': [[699, 373, 136, 202], [0, 0]],
+        'walk-forward-left-5': [[844, 373, 125, 208], [0, 0]],
+        'walk-forward-left-6': [[978, 373, 110, 212], [0, 0]],
+        'walk-forward-left-7': [[1098, 373, 106, 213], [0, 0]],
+        'walk-forward-left-8': [[1213, 373, 113, 210], [0, 0]],
+        'walk-forward-left-9': [[1336, 373, 131, 207], [0, 0]],
+        'walk-forward-left-10': [[1477, 373, 159, 200], [0, 0]],
         // CROUCH
         'crouch-left-0': [[5, 198, 128, 161], [0, 161]],
         'crouch-left-1': [[143, 198, 140, 165], [0, 165]],
@@ -41,6 +53,12 @@ export const player = {
             'idle-left-10', 'idle-left-11', 'idle-left-12', 'idle-left-13',
             'idle-left-14', 'idle-left-15'
         ],
+        'walkLeft': [
+            'walk-forward-left-1', 'walk-forward-left-2', 'walk-forward-left-3', 
+            'walk-forward-left-4', 'walk-forward-left-5', 'walk-forward-left-6', 
+            'walk-forward-left-7', 'walk-forward-left-8', 'walk-forward-left-9', 
+            'walk-forward-left-10' 
+        ],
         'crouchLeft': [
             'crouch-left-0', 'crouch-left-1', 'crouch-left-2', 'crouch-left-3', 'crouch-left-4',
             'crouch-left-5', 'crouch-left-6', 'crouch-left-7', 'crouch-left-8', 'crouch-left-9',
@@ -49,5 +67,5 @@ export const player = {
         ]
     },
     'path': "./assets/Characters/mai.png",
-    'state': 'crouchLeft'
+    'state': 'walkLeft'
 }

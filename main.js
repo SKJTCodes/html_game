@@ -40,7 +40,7 @@ const warrior = new Warrior({
     keys: input.keys
 })
 const testAnim = new TestAnim({
-    position: { x: 250, y: 310},
+    position: { x: 300, y: 260},
     keys: input.keys
 })
 
@@ -66,7 +66,7 @@ function animate() {
         s.draw(ctx);
     })
 
-    testAnim.init(ctx);
+    testAnim.update(ctx);
     // console.log(warrior.state);
     // femaleCharacter.update(ctx);
 }
